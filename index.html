@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Will You Be My Valentine?</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="hearts-container">
+      <!-- Floating hearts will be represented by spans -->
+      <div class="heart" style="--i: 1"></div>
+      <div class="heart" style="--i: 5"></div>
+      <div class="heart" style="--i: 10"></div>
+      <div class="heart" style="--i: 2"></div>
+      <div class="heart" style="--i: 8"></div>
+      <div class="heart" style="--i: 14"></div>
+      <div class="heart" style="--i: 19"></div>
+      <div class="heart" style="--i: 4"></div>
+      <div class="heart" style="--i: 11"></div>
+      <div class="heart" style="--i: 15"></div>
+    </div>
+
+    <input type="checkbox" id="yes-toggle" hidden />
+
+    <div class="container">
+      <div class="proposal-card">
+        <h1 class="title">Will you be my Valentine? 💖</h1>
+        <div class="gif-container">
+          <img
+            src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp4Z3p5YW55emF6ZzR5Z3p5YW55emF6ZzR5Z3p5YW55emF6ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L59aYyS0f6x9hOjbS5/giphy.gif"
+            alt="Cute Valentine Gif"
+            class="main-gif"
+          />
+        </div>
+        <div class="btn-group">
+          <label for="yes-toggle" class="btn btn-yes">Yes!</label>
+          <div class="no-btn-wrapper">
+            <button class="btn btn-no">No</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="popup-overlay">
+      <div class="popup">
+        <h2>Yay! I knew it! 🎉</h2>
+        <img
+          src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp4Z3p5YW55emF6ZzR5Z3p5YW55emF6ZzR5Z3p5YW55emF6ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KztT2c4u8mYYUiMKdJ/giphy.gif"
+          alt="Celebration Gif"
+          class="popup-gif"
+        />
+        <p>See you on Valentine's Day! ❤️</p>
+        <label for="yes-toggle" class="close-btn">Close</label>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,259 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Pacifico&display=swap");
+
+:root {
+  --pink-primary: #ff4d6d;
+  --pink-secondary: #ff8fa3;
+  --pink-bg: #fff0f3;
+  --white: #ffffff;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Outfit", sans-serif;
+}
+
+body {
+  background: var(--pink-bg);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Floating Hearts Background */
+.hearts-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.heart {
+  position: absolute;
+  bottom: -100px;
+  width: 20px;
+  height: 20px;
+  background: var(--pink-secondary);
+  transform: rotate(45deg);
+  opacity: 0.3;
+  animation: float 10s linear infinite;
+  animation-delay: calc(var(--i) * -1.5s);
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: var(--pink-secondary);
+  border-radius: 50%;
+}
+
+.heart::before {
+  left: -10px;
+}
+
+.heart::after {
+  top: -10px;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(45deg);
+    opacity: 0;
+    left: calc(10% * var(--i));
+  }
+  10% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-110vh) rotate(45deg);
+    opacity: 0;
+    left: calc(8% * var(--i));
+  }
+}
+
+/* Main Container */
+.container {
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.proposal-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 40px 20px;
+  border-radius: 30px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.title {
+  font-family: "Pacifico", cursive;
+  color: var(--pink-primary);
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.gif-container {
+  width: 150px;
+  margin: 0 auto 30px;
+}
+
+.main-gif {
+  width: 100%;
+  border-radius: 15px;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+  height: 60px;
+  align-items: center;
+}
+
+.btn {
+  padding: 12px 35px;
+  border-radius: 50px;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-yes {
+  background: var(--pink-primary);
+  color: var(--white);
+  box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+  animation: pulse 1.5s infinite;
+}
+
+.btn-yes:hover {
+  transform: scale(1.1);
+  background: #e63958;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.no-btn-wrapper {
+  position: relative;
+}
+
+.btn-no {
+  background: var(--white);
+  color: #666;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* The escaping button logic (pure CSS) */
+.no-btn-wrapper:hover .btn-no {
+  position: fixed;
+  z-index: 1000;
+}
+
+/* Predefined positions for the button to jump to on hover */
+.no-btn-wrapper:hover .btn-no {
+  animation: moveAway 0.2s forwards;
+}
+
+@keyframes moveAway {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    top: calc(10% + (80% * 0.4)); /* Just a random-ish stable spot */
+    left: calc(10% + (80% * 0.7));
+  }
+}
+
+/* Mobile specific escape */
+@media (max-width: 768px) {
+  .btn-no:active {
+    position: fixed;
+    top: 20%;
+    left: 20%;
+  }
+}
+
+/* Celebration Popup */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
+
+.popup {
+  background: var(--white);
+  padding: 30px;
+  border-radius: 25px;
+  width: 85%;
+  max-width: 350px;
+  text-align: center;
+  transform: scale(0.7);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#yes-toggle:checked ~ .popup-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#yes-toggle:checked ~ .popup-overlay .popup {
+  transform: scale(1);
+}
+
+.popup h2 {
+  color: var(--pink-primary);
+  margin-bottom: 20px;
+  font-family: "Pacifico", cursive;
+}
+
+.popup-gif {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.close-btn {
+  display: inline-block;
+  margin-top: 20px;
+  color: #999;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
